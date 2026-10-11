@@ -1,0 +1,13 @@
+torch>=2.0
+numpy>=1.23
+pandas>=1.5
+h5py>=3.8
+scikit-learn>=1.3
+tqdm>=4.64
+PyYAML>=6.0
+ruamel.yaml>=0.17
+addict>=2.4
+pytz
+pulp>=2.7
+# CPU FAISS works with Dataset.pseudo_labeling.gpu=false.
+# For the default GPU clustering, install faiss-gpu using conda instead.

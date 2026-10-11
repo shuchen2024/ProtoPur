@@ -1,0 +1,83 @@
+General:
+    MODEL_NAME: CLAM_MB_MIL
+    modified: True
+    seed: 1
+    num_classes: 3
+    num_epochs: 100
+    device: 0
+    num_workers: 4
+    best_model_metric: macro_auc 
+    earlystop: 
+        use: True
+        patience: 20
+        metric: macro_auc
+
+Dataset:
+    pseudo_labeling:
+        seed: 1
+        k: 2000
+        niter: 20
+        max_points_per_centroid: 256
+        patch_threshold: 5
+        dist_max: null
+        gpu: true
+    Kfold: True
+    DATASET_NAME: TCGA_BRCA_conch_v1
+    # to use train-val-test, open dataset_csv_dir
+    # to use k-fold train-val/k-fold train-val then test, open dataset_root_dir
+    
+    # dataset_root_dir: /home/sc/MIL/csv_data/
+    k_fold_csv_paths: [
+        /home/sc/cluster/csv_data/tcga_brca/fold1.csv, 
+        /home/sc/cluster/csv_data/tcga_brca/fold2.csv,
+        /home/sc/cluster/csv_data/tcga_brca/fold3.csv,
+        /home/sc/cluster/csv_data/tcga_brca/fold4.csv,
+    ]
+    balanced_sampler:
+        use: False
+        replacement: True
+
+Logs:
+    log_root_dir: outputs/CLAM_MB_v3
+
+Model:
+    in_dim: 512 # depend on the pt dimensions，such resnet50——>1024 vit_s——>384
+    dropout: 0.1
+    act: relu  # relu or silu gule
+    k_sample: 8
+    size_arg: small  
+    instance_loss_fn: ce
+    subtyping: True
+    instance_eval: True
+    gate: True
+    bag_weight: 0.7
+    pseudo_loss_weight: 0.3
+    optimizer:
+        which: adam    # adam or adamw
+        adam_config:
+            lr: 0.0002
+            weight_decay: 0.00001
+        adamw_config:
+            lr: 0.0002
+            weight_decay: 0.00001
+    criterion: ce  # ce
+    scheduler:
+        use: False
+        warmup: 2
+        which: step  # [step, cosine,multi_step,exponential]
+        step_config:
+            step_size: 3 # absolute step size, should ensure that step_size > warmup
+            gamma: 0.9
+        multi_step_config:
+            milestones: [20, 30, 40] # absolute milestones, should ensure that milestones > warmup
+            gamma: 0.9
+        exponential_config:
+            gamma: 0.9 # begin after warmup
+        cosine_config:
+            T_max: 10 # interval of cosine annealing, begin after warmup
+            eta_min: 0.0001
+
+        
+
+    
+     
