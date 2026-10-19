@@ -1,9 +1,5 @@
 # ProtoPur: Prototype-Purity Pseudo-Labeling for Weakly Supervised Instance Learning in Pathology
 
-This release adapts the local MIL_BASELINE training code for CLAM-MB and DSMIL.
-Both models generate fixed patch pseudo labels from the training split only,
-using the pipeline in `milp4_addition/main_v3.py`.
-
 ## Installation
 
 Use Python 3.10 or later with a CUDA-enabled PyTorch installation.
