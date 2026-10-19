@@ -58,15 +58,6 @@ original model/training seeds remain 1 for CLAM-MB and 0 for DSMIL. FAISS's
 default clustering seed is retained, as in `main_v3.py`. Empty clusters are
 handled without NaN coordinates, and fully ignored bags have zero pseudo loss.
 
-The existing MIL objectives are preserved:
-
-- CLAM-MB: `0.7 * bag_CE + 0.3 * attention_instance_CE + 0.3 * pseudo_CE`.
-- DSMIL: `0.5 * bag_CE + 0.5 * max_instance_CE + 0.3 * pseudo_CE`.
-
-CLAM's unknown (-1) patches can still enter attention-selected instance
-supervision. DSMIL's unknown patches still enter max pooling and bag aggregation.
-They are ignored only by direct pseudo-label cross entropy.
-
 ## Checks
 
 ```bash
