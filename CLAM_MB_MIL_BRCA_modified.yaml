@@ -23,22 +23,18 @@ Dataset:
         gpu: true
     Kfold: True
     DATASET_NAME: TCGA_BRCA_conch_v1
-    # to use train-val-test, open dataset_csv_dir
-    # to use k-fold train-val/k-fold train-val then test, open dataset_root_dir
-    
-    # dataset_root_dir: /home/sc/MIL/csv_data/
     k_fold_csv_paths: [
-        /home/sc/cluster/csv_data/tcga_brca/fold1.csv, 
-        /home/sc/cluster/csv_data/tcga_brca/fold2.csv,
-        /home/sc/cluster/csv_data/tcga_brca/fold3.csv,
-        /home/sc/cluster/csv_data/tcga_brca/fold4.csv,
+        ./tcga_brca/fold1.csv, 
+        ./tcga_brca/fold2.csv,
+        ./tcga_brca/fold3.csv,
+        ./tcga_brca/fold4.csv,
     ]
     balanced_sampler:
         use: False
         replacement: True
 
 Logs:
-    log_root_dir: outputs/CLAM_MB_v3
+    log_root_dir: outputs
 
 Model:
     in_dim: 512 # depend on the pt dimensions，such resnet50——>1024 vit_s——>384
