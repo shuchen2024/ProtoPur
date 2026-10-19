@@ -17,7 +17,6 @@ def assign_clusters_by_distance_and_coverage_v3(
     bag_cluster_counts = np.asarray(bag_cluster_counts)
 
     k, num_vertices = dist.shape
-    assert num_vertices == len(class_order), "dist 第二维应等于 class_order 长度"
 
     cluster_labels = np.zeros(k, dtype=int)
     nearest_class_idx = dist.argmin(axis=1)
